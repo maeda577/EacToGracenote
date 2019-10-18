@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>EACからGracenoteへ接続するためのCDDBサーバ 設定方法</title>
+</head>
+<body>
+    <h2>EACからGracenoteへ接続するためのCDDBサーバ 設定方法</h2>
+    1. freedb Metadata Pluginのインストール<br />
+    EACのインストール時に、以下のオプションを有効化して下さい。<br />
+    インストール済みの場合は不要です。<br />
+    <img src="img/install.jpg" /><br />
+    <br />
+    2. メタデータプラグインの設定<br />
+    EACを起動し、上部メニューから[EAC] -> [Metadata Options...]を選択します。<br />
+    <img src="img/menu.jpg" /><br />
+    <br />
+    [freedb Metadata Plugin]を選択し、[Show options～]のボタンをクリックします。<br />
+    <img src="img/provider.jpg" /><br />
+    <br />
+    [Use freedb server]に http://gncddb.azurewebsites.net/cddb.svc/cddb を入力します。<br />
+    下二つは任意で構いませんが、不要ならば[Never]を選択します。<br />
+    [Options]ダイアログを閉じるボタンで閉じ、[Metadata options]ダイアログをOKボタンで閉じます。<br />
+    <img src="img/options.jpg" /><br />
+    <br />
+    3. CD情報の取得<br />
+    EACトップ画面に戻り、任意の音楽CDを挿入します。<br />
+    Metadataアイコンの右側の三角を選択し、[freedb Metadata Plugin]を選択します。<br />
+    アイコン本体を押すと、CD情報が取得されます。<br />
+    <img src="img/cddb.jpg" /><br />
+    <br />
+    <a href="index.html">戻る</a>
+</body>
+</html>

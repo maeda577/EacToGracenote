@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>EACからGracenoteへ接続するためのCDDBサーバ</title>
+</head>
+<body>
+    <h2>EACからGracenoteへ接続するためのCDDBサーバ</h2>
+    <h4>・これは何？</h4>
+    Exact Audio Copy (EAC)のfreedb Metadata Pluginから、<br />
+    間接的にGracenoteのCD情報を取得するためのサーバです。<br />
+    CD情報は取得にのみ対応し、登録や更新はできません。<br />
+    <h4>・使い方(概要)</h4>
+    freedb Metadata Pluginに以下の値を設定して下さい。<br />
+    (プロバイダ名に注意してください。Build-in freedb engineでは動作しません)<br />
+    <div style="display:inline-block; padding: 10px; margin: 10px; border: 1px solid;">
+        freedb server : http://gncddb.azurewebsites.net:80/cddb.svc/cddb<br />
+    </div>
+    <h4>・使い方(詳細)</h4>
+    <a href="eac.html">こちらから</a><br />
+    <h4>・詳細</h4>
+    情報問い合わせにGracenote Web APIを使用しています。<br />
+    仕様など：<a href="https://developer.gracenote.com/node/2893?language=ja">https://developer.gracenote.com/node/2893?language=ja</a><br />
+    FreeDB形式でTOCを受け取り、そのままGracenoteWebAPIに受け渡しているだけです。<br />
+    <h4>・ソースコード</h4>
+    <a href="source.zip">source.zip</a><br />
+    ソースコードは<a href="https://unlicense.org/">Unlicense</a>です。商用利用を含め、一切の制限を行いません。<br />
+    <h4>・既知の不具合</h4>
+    特定のCDの情報が正しく取得できない場合があります。<br />
+    シングルCDなど、曲数の少ないCDで発生しやすいようです。<br />
+    CDDBとGracenoteの仕様の違い（リードアウトの値をGracenoteではフレーム数で扱いCDDBでは秒数で扱う）に起因するもののため、対策の見込みはありません。<br />
+    <h4>・更新履歴</h4>
+    2017/10/22<br />
+    APIキーが失効していたため更新した<br />
+    2014年ぐらい<br />
+    初回公開<br />
+</body>
+</html>
