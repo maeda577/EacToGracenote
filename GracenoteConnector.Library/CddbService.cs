@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Configuration;
 using System.Diagnostics;
-using System.Linq;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Web;
 using System.Text;
@@ -58,13 +57,15 @@ namespace GracenoteConnector.Library
             // コマンドタイプで分岐
             try
             {
+                string userId = await this.gracenoteClient.GetNewUserId();
+
                 switch (cmdArray[1])
                 {
                     case "query":
-                        resultString = await this.Query(cmdArray);
+                        resultString = await this.Query(cmdArray, userId);
                         break;
                     case "read":
-                        resultString = await this.Read(cmdArray);
+                        resultString = await this.Read(cmdArray, userId);
                         break;
                     default:
                         resultString = "500 Unrecognized command.";
@@ -86,7 +87,7 @@ namespace GracenoteConnector.Library
         /// </summary>
         /// <param name="cmdArray"></param>
         /// <returns></returns>
-        private async Task<string> Query(string[] cmdArray)
+        private async Task<string> Query(string[] cmdArray, string userId)
         {
             QueryCommand command = null;
             if (QueryCommand.TryCreate(cmdArray, out command) == false)
@@ -94,7 +95,7 @@ namespace GracenoteConnector.Library
                 return "500 Command syntax error.";
             }
 
-            Album[] albums = await this.gracenoteClient.GetAlbumInfo(command.Toc);
+            Album[] albums = await this.gracenoteClient.GetAlbumInfo(command.Toc, userId);
 
             return CddbUtil.CreateQueryResponse(command, albums);
         }
@@ -104,7 +105,7 @@ namespace GracenoteConnector.Library
         /// </summary>
         /// <param name="cmdArray"></param>
         /// <returns></returns>
-        private async Task<string> Read(string[] cmdArray)
+        private async Task<string> Read(string[] cmdArray, string userId)
         {
             ReadCommand command = null;
 
@@ -113,7 +114,7 @@ namespace GracenoteConnector.Library
                 return "500 Command syntax error.";
             }
 
-            Album[] albums = await this.gracenoteClient.GetAlbumInfo(command.DiscId);
+            Album[] albums = await this.gracenoteClient.GetAlbumInfo(command.DiscId, userId);
 
             return CddbUtil.CreateReadResponse(command, albums);
         }

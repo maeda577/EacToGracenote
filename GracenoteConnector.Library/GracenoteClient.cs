@@ -28,11 +28,6 @@ namespace GracenoteConnector.Library
         private readonly Uri endPoint;
 
         /// <summary>
-        /// GracenoteのユーザーID
-        /// </summary>
-        public string UserId { get; private set; }
-
-        /// <summary>
         /// コンストラクタ
         /// </summary>
         /// <param name="clientId">アプリケーションのクライアントID</param>
@@ -43,8 +38,6 @@ namespace GracenoteConnector.Library
             string uri = string.Format(UriBase, clientId.Split('-').FirstOrDefault());
 
             this.endPoint = new Uri(string.Format(UriBase, clientId), UriKind.Absolute);
-
-            this.UserId = this.GetNewUserId().Result;
         }
 
         /// <summary>
@@ -61,17 +54,6 @@ namespace GracenoteConnector.Library
             RegisterResponse response = await PostToGracenote<RegisterResponse>(queries.ToXmlString(), this.endPoint);
 
             return response.USER;
-        }
-
-
-        /// <summary>
-        /// アルバム情報を取得する
-        /// </summary>
-        /// <param name="toc">TOC情報</param>
-        /// <returns></returns>
-        public async Task<Album[]> GetAlbumInfo(int[] toc)
-        {
-            return await this.GetAlbumInfo(toc, this.UserId);
         }
 
         /// <summary>
@@ -91,17 +73,6 @@ namespace GracenoteConnector.Library
             AlbumTocResponse response = await PostToGracenote<AlbumTocResponse>(queries.ToXmlString(), this.endPoint);
 
             return response.ALBUM;
-        }
-
-        /// <summary>
-        /// アルバム情報を取得する
-        /// </summary>
-        /// <param name="userId">ユーザーID</param>
-        /// <param name="gracenoteId">アルバムのGNID</param>
-        /// <returns></returns>
-        public async Task<Album[]> GetAlbumInfo(string gracenoteId)
-        {
-            return await this.GetAlbumInfo(gracenoteId, this.UserId);
         }
 
         /// <summary>
