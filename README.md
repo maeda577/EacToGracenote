@@ -1,3 +1,8 @@
+**2019/11/28現在、Gracenoteの開発者向けサイトが正常に動作しておらず、Client IDの生成ができません。そのため、デモサイトは動作していません。**
+
+
+
+
 EacToGracenote
 =======
 
@@ -7,7 +12,7 @@ EACからGracenoteへ接続するためのCDDB中継サーバ
 Exact Audio Copy (EAC)のfreedb Metadata Pluginから、間接的にGracenoteのCD情報を取得するためのサーバです。CD情報は取得にのみ対応し、登録や更新はできません。
 
 ## デモサイト
-[http://gncddb.azurewebsites.net/](http://gncddb.azurewebsites.net/)
+[http://gncddb.azurewebsites.net/](http://gncddb.azurewebsites.net/) (動作しません)
 
 ## 使い方(サーバ)
 あらかじめ[Gracenoteの開発者登録](https://developer.gracenote.com/)を行ってください。
